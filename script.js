@@ -7,11 +7,6 @@ const createModal = (title, content, buttons) => {
   });
 };
 
-/*
-createModal('Modal Test', 'this is a test', {
-  'Close': () => document.querySelector('.modal').remove()
-})*/
-
 const codes = {
   'rainbow': `localStorage.setItem('chatColor', 'gradient=[25deg: #f20505, #f26c05, #f2da05, #74f205, #05f28b, #05a7f2, #050df2]')`,
   'olden': `localStorage.setItem('chatColor', 'gradient=[25deg: #fcfcfc, #050505]')`,
@@ -25,15 +20,15 @@ const codes = {
   'red': `localStorage.setItem('chatColor', 'gradient=[100deg: #fc1303, #9e0d03]')`,
   'orange': `localStorage.setItem('chatColor', 'gradient=[100deg: #fa7b05, #ad5605]')`,
   'icy': `localStorage.setItem('chatColor', 'gradient=[25deg: #bef7e7, #b5f5ec, #abeaed, #a5e7f0, #9edaf0]')`  
-}
+};
 
 window.copy = async (c) => {
   await navigator.clipboard.writeText(codes[c]);
 };
 
 window.transBG = (c) => {
-  var poop = new TimelineMax();
-  poop.to('.background', {
+  var background = new TimelineMax();
+  background.to('.background', {
     duration: 0.5,
     ease: Expo.easeIn,
     opacity: 0,
@@ -56,14 +51,13 @@ function parseCode(c) {
   var deg = raw[0];
   var colors = raw[1].split(', ');
   var dir;
-  if (deg === 'right' || deg === 'left' || deg === 'up' || deg === 'down')
-    dir = 'to ' + (deg === 'up') ? 'top' : (deg === 'down') ? 'bottom' : deg;
+  if (deg === 'right' || deg === 'left' || deg === 'up' || deg === 'down') dir = 'to ' + (deg === 'up') ? 'top' : (deg === 'down') ? 'bottom' : deg;
   else dir = deg;
   return 'linear-gradient(' + dir + ', ' + colors.join(', ') + ')';
 }
 
-Object.keys(codes).forEach(sex => {
-  $('.prem-btns').append(`<button style="display: flex; flex-direction: column; text-align: center; align-items: center; justify-content: center; min-width: 2vw; min-height: 2vw; aspect-ratio: 1/1; box-sizing: border-box; border: 2px solid white; border-radius: 50%; padding: 0px !important;" onclick="transBG('${sex}'); copy('${sex}')" class="button"><div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; background: ${parseCode(sex)}; border-radius: 50%; min-width: 2.7vw !important; min-height: 2.7vw !important; aspect-ratio: 1/1 !important; margin: 0px !important; padding: 0px !important;"></div></button>`)
+Object.keys(codes).forEach(color => {
+  $('.prem-btns').append(`<button style="display: flex; flex-direction: column; text-align: center; align-items: center; justify-content: center; min-width: 2vw; min-height: 2vw; aspect-ratio: 1/1; box-sizing: border-box; border: 2px solid white; border-radius: 50%; padding: 0px !important;" onclick="transBG('${color}'); copy('${color}')" class="button"><div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; background: ${parseCode(color)}; border-radius: 50%; min-width: 2.7vw !important; min-height: 2.7vw !important; aspect-ratio: 1/1 !important; margin: 0px !important; padding: 0px !important;"></div></button>`)
 });
 
 var cAngle = 9;
@@ -75,9 +69,7 @@ ap.onclick = () => {
   if (cAngle !== (angles.length - 1)) {
     cAngle++;
     ap.style.transform = 'rotate(' + angles[cAngle] + 'deg)';
-  } else {
-    cAngle = 0;
-  }
+  } else cAngle = 0;
 };
 
 
