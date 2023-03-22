@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  
+  <script src="https://kit.fontawesome.com/a28fb25bdb.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+
+  <title>blacket chat colors</title>
+</head>
+
+<body>
+  <div class="background"></div>
+  
+  <header>
+    <div class="header-title">blacket colors</div>
+    <div style="display: flex; flex-direction: row; width: 50%; text-align: right; justify-content: right; align-items: center;"><a href="https://discord.gg/blooket" class="button" style="margin-right: 2vw !important; display: flex; text-align: center; justify-content: center; align-items: center; overflow: hidden; min-width: 4vw !important; min-height: 4vw !important; max-width: 4vw !important; max-height: 4vw !important; aspect-ratio: 1/1 !important; padding: 0px; margin: 0px; border-radius: 50%; flex: 1; align-self: center;"><i class="fa-brands fa-discord" style="font-size: 2vw; margin: 0px !important; padding: 0px !important; object-fit: contain;"></i></a></div>
+  </header>
+
+  <div class="premade">
+    <div class="title">premade</div>
+    <div class="subtitle">click to copy</div>
+    <div class="prem-btns">
+
+    </div>
+  </div>
+
+  <div class="selfmade">
+    <div class="title">selfmade</div>
+    <div class="subtitle" style="margin-bottom: 20px;">current palette: none</div>
+  
+    <div class="buttons">
+      <span id="anglePicker" style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; margin-right: 0.5vw; width: 2vw; height: 2vw; aspect-ratio: 1/1; border-radius: 50%; background-color: black; font-size: 1.5vw; user-select: none; transform: rotate(90deg);"><i class="fas fa-arrow-up"></i></span>
+      <div style="overflow: visible; justify-content: space-evenly !important; min-height: 1.5vw; max-height: 1.5vw; min-width: calc(30vw - 4vw - 1vw); max-width: calc(30vw - 4vw - 1vw); border-radius: 5rem; background: linear-gradient(to right, white, rgb(207, 207, 207)) !important; display: flex; flex-direction: row; text-align: center; justify-content: center; align-items: center; flex: 1; user-select: none;" id="timeline" class="timeline">
+        
+      </div>
+      <span style="margin-left: 0.5vw; width: 2vw; height: 2vw; aspect-ratio: 1/1; border-radius: 50%; background-color: black; font-size: 1.5vw;" onclick="document.getElementById('timeline').innerHTML += '<input oncontextmenu=&quot;this.remove();return false;&quot; style=&quot;--color:#000000;&quot; type=&quot;color&quot; onchange=&quot;this.style.setProperty(\'--color\', this.value)&quot;>'">+</span>
+    </div>
+    <button class="button" onclick="genG()">generate</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
