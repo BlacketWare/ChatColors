@@ -64,13 +64,11 @@ window.transBG = (c) => {
   })
 };
 
-function parseCode(c) {
-  var code = codes[c];
+function parseCode(g) {
+  var code = codes[g] ? codes[g] : g;
   var raw = code.split('[')[1].split(']')[0].split(': ');
   var deg = raw[0];
-  console.log(deg);
   var colors = raw[1].split(', ');
-  console.log(deg, colors)
   var dir;
   if (!deg.endsWith('deg'))
     dir = 'to ' + ((deg === 'up') ? 'top' : (deg === 'down') ? 'bottom' : (deg === 'right') ? 'right' : deg);
@@ -101,10 +99,18 @@ window.genG = async () => {
   var tl = document.getElementById('timeline');
   var ch = [...tl.children];
 
+  if (ch.length < 2) { return createModal('Error', 'You need at least 2 colors to make a gradient.', {
+    'Close': () => document.querySelector('.modal').remove()
+  }) } else if (ch.length > 7) { return createModal('Error', 'You can only have up to 7 colors in a gradient.', {
+    'Close': () => document.querySelector('.modal').remove()
+  }) }
+
   var ang = angles[cAngle];
   ang = ang === 0 ? 'up' : ang === 90 ? 'right' : ang === 180 ? 'down' : ang === 270 ? 'left' : ang === undefined || ang === 'undefined' ? 'up' : ang + 'deg';
 
   var grS = [];
+
+  console.log(parseCode("gradient=["+ang+": "+grS.join(', ')+"]"));
 
   for (var x of ch) {
     grS.push(x.getAttribute('style').split(';').filter(x => x.split(':')[0] === '--color')[0].split(':')[1]);
@@ -112,7 +118,7 @@ window.genG = async () => {
 
   await navigator.clipboard.writeText("localStorage.setItem('chatColor', '"+'gradient=['+ang+': '+grS.join(', ')+']'+"')");
 
-  createModal('Text copied to your clipboard.', '<pre><code>&lt;gradient=['+ang+': '+grS.join(', ')+']&gt;'+'text&lt;/g&gt;</code></pre>', {
+  createModal('Text copied to your clipboard.', `<span style="font-family: \'Courier New\', monospace; -webkit-text-fill-color: transparent; background: ${parseCode("gradient=["+ang+": "+grS.join(', ')+"]")}; -webkit-background-clip: text; background-clip: text;">Text looks like this.</span>`, {
     'Close': () => document.querySelector('.modal').remove()
   })
 }
