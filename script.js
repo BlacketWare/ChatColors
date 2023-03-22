@@ -7,11 +7,6 @@ const createModal = (title, content, buttons) => {
   });
 };
 
-/*
-createModal('Modal Test', 'this is a test', {
-  'Close': () => document.querySelector('.modal').remove()
-})*/
-
 const codes = {
   'rainbow': `localStorage.setItem('chatColor', 'gradient=[25deg: #f20505, #f26c05, #f2da05, #74f205, #05f28b, #05a7f2, #050df2]')`,
   'shades of grey': `localStorage.setItem('chatColor', 'gradient=[25deg: #fcfcfc, #050505]')`,
@@ -28,15 +23,15 @@ const codes = {
   'cotton candy': `localStorage.setItem('chatColor', 'gradient=[40deg: #ffbcd9, #A0D9EF]')`,
   'pretty in pastel': `localStorage.setItem('chatColor', 'gradient=[90deg: #ffb3ba, #ffdfba, #ffffba, #baffc9, #bae1ff]')`,
   'preposterous purple': `localStorage.setItem('chatColor', 'gradient=[right: #e0c3fc, #8ec5fc]')`,
-}
+};
 
 window.copy = async (c) => {
   await navigator.clipboard.writeText(codes[c]);
 };
 
 window.transBG = (c) => {
-  var poop = new TimelineMax();
-  poop.to('#gradName', {
+  let bg = new TimelineMax();
+  bg.to('#gradName', {
     opacity: 0,
     scaleX: 0,
     ease: Expo.easeIn
@@ -61,58 +56,47 @@ window.transBG = (c) => {
     scaleY: 1,
     scaleX: 1,
     transformOrigin: 'center bottom'
-  })
+  });
 };
 
-function parseCode(g) {
-  var code = codes[g] ? codes[g] : g;
-  var raw = code.split('[')[1].split(']')[0].split(': ');
-  var deg = raw[0];
-  var colors = raw[1].split(', ');
-  var dir;
-  if (!deg.endsWith('deg'))
-    dir = 'to ' + ((deg === 'up') ? 'top' : (deg === 'down') ? 'bottom' : (deg === 'right') ? 'right' : deg);
+const parseCode = (g) => {
+  let code = codes[g] ? codes[g] : g;
+  let raw = code.split('[')[1].split(']')[0].split(': ');
+  let deg = raw[0];
+  let colors = raw[1].split(', ');
+  let dir;
+  if (!deg.endsWith('deg')) dir = 'to ' + ((deg === 'up') ? 'top' : (deg === 'down') ? 'bottom' : (deg === 'right') ? 'right' : deg);
   else dir = deg;
   return 'linear-gradient(' + dir + ', ' + colors.join(', ') + ')';
-}
+};
 
-Object.keys(codes).forEach(sex => {
-  $('.prem-btns').append(`<button style="display: flex; flex-direction: column; text-align: center; align-items: center; justify-content: center; min-width: 2vw; min-height: 2vw; aspect-ratio: 1/1; box-sizing: border-box; border: 2px solid white; border-radius: 50%; padding: 0px !important;" onclick="transBG('${sex}'); copy('${sex}')" class="button"><div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; background: ${parseCode(sex)}; border-radius: 50%; min-width: 2.7vw !important; min-height: 2.7vw !important; aspect-ratio: 1/1 !important; margin: 0px !important; padding: 0px !important;"></div></button>`)
+Object.keys(codes).forEach(code => {
+  $('.prem-btns').append(`<button style="display: flex; flex-direction: column; text-align: center; align-items: center; justify-content: center; min-width: 2vw; min-height: 2vw; aspect-ratio: 1/1; box-sizing: border-box; border: 2px solid white; border-radius: 50%; padding: 0px !important;" onclick="transBG('${code}'); copy('${code}')" class="button"><div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; background: ${parseCode(code)}; border-radius: 50%; min-width: 2.7vw !important; min-height: 2.7vw !important; aspect-ratio: 1/1 !important; margin: 0px !important; padding: 0px !important;"></div></button>`)
 });
 
-var cAngle = 9;
-var angles = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360];
+let cAngle = 9;
+let angles = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360];
 
-var ap = document.getElementById('anglePicker');
+let ap = document.getElementById('anglePicker');
 
 ap.onclick = () => {
   if (cAngle !== (angles.length - 1)) {
     cAngle++;
     ap.style.transform = 'rotate(' + angles[cAngle] + 'deg)';
-  } else {
-    cAngle = 0;
-  }
+  } else cAngle = 0;
 };
 
 
 window.genG = async () => {
-  var tl = document.getElementById('timeline');
-  var ch = [...tl.children];
+  let tl = document.getElementById('timeline');
+  let ch = [...tl.children];
 
-  if (ch.length < 2) { return createModal('Error', 'You need at least 2 colors to make a gradient.', {
-    'Close': () => document.querySelector('.modal').remove()
-  }) } else if (ch.length > 7) { return createModal('Error', 'You can only have up to 7 colors in a gradient.', {
-    'Close': () => document.querySelector('.modal').remove()
-  }) }
-
-  var ang = angles[cAngle];
+  let ang = angles[cAngle];
   ang = ang === 0 ? 'up' : ang === 90 ? 'right' : ang === 180 ? 'down' : ang === 270 ? 'left' : ang === undefined || ang === 'undefined' ? 'up' : ang + 'deg';
 
-  var grS = [];
+  let grS = [];
 
-  console.log(parseCode("gradient=["+ang+": "+grS.join(', ')+"]"));
-
-  for (var x of ch) {
+  for (let x of ch) {
     grS.push(x.getAttribute('style').split(';').filter(x => x.split(':')[0] === '--color')[0].split(':')[1]);
   }
 
@@ -121,4 +105,4 @@ window.genG = async () => {
   createModal('Text copied to your clipboard.', `<span style="font-family: \'Courier New\', monospace; -webkit-text-fill-color: transparent; background: ${parseCode("gradient=["+ang+": "+grS.join(', ')+"]")}; -webkit-background-clip: text; background-clip: text;">Text looks like this.</span>`, {
     'Close': () => document.querySelector('.modal').remove()
   })
-}
+};
