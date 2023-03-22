@@ -59,8 +59,8 @@ window.transBG = (c) => {
   });
 };
 
-const parseCode = (c) => {
-  let code = codes[c];
+const parseCode = (g) => {
+  let code = codes[g] ? codes[g] : g;
   let raw = code.split('[')[1].split(']')[0].split(': ');
   let deg = raw[0];
   let colors = raw[1].split(', ');
@@ -102,7 +102,7 @@ window.genG = async () => {
 
   await navigator.clipboard.writeText("localStorage.setItem('chatColor', '"+'gradient=['+ang+': '+grS.join(', ')+']'+"')");
 
-  createModal('Text copied to your clipboard.', '<pre><code>&lt;gradient=['+ang+': '+grS.join(', ')+']&gt;'+'text&lt;/g&gt;</code></pre>', {
+  createModal('Text copied to your clipboard.', `<span style="font-family: \'Courier New\', monospace; -webkit-text-fill-color: transparent; background: ${parseCode("gradient=["+ang+": "+grS.join(', ')+"]")}; -webkit-background-clip: text; background-clip: text;">Text looks like this.</span>`, {
     'Close': () => document.querySelector('.modal').remove()
-  });
+  })
 };
