@@ -2,12 +2,6 @@
 easy color code generator, coded by me and @intertransfer
 
 ## Credits
-**KEY:**
-- 😀: Made all of it
-- 😊: Made most of it
-- 🙂: Made some of it
-
-
 - VillainsRule
   - 😀
     - UI
@@ -21,3 +15,8 @@ easy color code generator, coded by me and @intertransfer
     - Gradient transformer
   - 🙂
     - Animations
+
+**KEY:**
+- 😀: Made all of it
+- 😊: Made most of it
+- 🙂: Made some of it
