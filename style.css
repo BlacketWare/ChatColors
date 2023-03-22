@@ -242,9 +242,15 @@ header {
 }
 
 .prem-btns {
+  min-width: 50%;
   max-width: 50%;
   display: flex;
   flex-wrap: wrap;
+  margin: 0px !important;
+  padding: 0px !important;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 a {
@@ -268,7 +274,6 @@ a {
   width: 50%;
   right: 0;
   position: absolute;
-  top: 20vh;
   display: flex;
   flex-direction: column;
   text-align: center;
