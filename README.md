@@ -1,6 +1,9 @@
 # BlacketColorCodes
 easy color code generator, coded by me and @intertransfer
 
+## Deployment
+now on [bcc.villainsrule.xyz](https://bcc.villainsrule.xyz)
+
 ## Credits
 - VillainsRule
   - 😀
