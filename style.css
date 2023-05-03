@@ -405,6 +405,7 @@ a {
 .selfmade {
   width: 50%;
   right: 0;
+  top: 20vh;
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
