@@ -9,6 +9,7 @@ now on [bcc.villainsrule.xyz](https://bcc.villainsrule.xyz)
   - 😀
     - UI
     - Modals
+    - Blook data scraping
   - 😊
     - Premade gradients
     - Animations
@@ -16,6 +17,7 @@ now on [bcc.villainsrule.xyz](https://bcc.villainsrule.xyz)
   - 😀
     - Gradient selector
     - Gradient transformer
+    - Gradient from blook
   - 🙂
     - Animations
 
