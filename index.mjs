@@ -13,7 +13,7 @@ app.use(compression({
     level: 9
 }));
 
-app.get('/', async (req, res) => res.send(fs.readFileSync('./blooks.json', 'utf8'));
+app.get('/', async (req, res) => res.send(fs.readFileSync('./static/index.html', 'utf8')));
 app.get('/worker/blooks', async (req, res) => res.json(JSON.parse(fs.readFileSync('./blooks.json', 'utf8'))));
 
 app.listen(8080, () => console.log('Listening on port 8080'));
