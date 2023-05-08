@@ -17,8 +17,8 @@
             "dest": "blooks.json"
         },
         {
-            "src": "/(.+)",
-            "dest": "static/$1"
+            "src": "/static/(.+)",
+            "dest": "$1"
         }
     ]
 }
