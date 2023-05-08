@@ -1,17 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import compression from 'compression';
-import fetch from 'node-fetch';
 import fs from 'fs';
-
-await fetch('https://blacket.org/worker/verify', {
-    method : 'GET'
-})
 
 const app = express();
 app.use(express.static('static'));
 app.use(cors({
-    origin: 'blacket.org, bcc.villainsrule.xyz',
+    origin: 'bcc.villainsrule.xyz',
     optionsSuccessStatus: 200
 }));
 app.use(compression({
