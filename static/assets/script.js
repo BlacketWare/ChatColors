@@ -98,20 +98,37 @@ Object.keys(codes).forEach((code) => {
   );
 });
 
-let cAngle = 9;
+let cAngle = 8;
 let angles = [
-  0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170,
+  10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170,
   180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320,
   330, 340, 350, 360,
 ];
 
 let ap = document.getElementById("anglePicker");
 
-ap.onclick = () => {
-  if (cAngle < angles.length) {
-    cAngle++;
-    ap.style.transform = "rotate(" + angles[cAngle] + "deg)";
-  } else cAngle = 0;
+var held = false;
+
+ap.onmousedown = () => {
+  held = true;
+  var int;
+  int = setInterval(() => {
+    if (!held)
+      return clearInterval(int);
+    if (cAngle < (angles.length - 1)) {
+      console.log(cAngle, angles.length - 1)
+      cAngle++;
+      ap.style.transform = "rotate(" + angles[cAngle] + "deg)";
+    } else {
+      cAngle = 0;
+      ap.style.transform = "rotate(" + angles[cAngle] + "deg)";
+    }
+  }, 200)
+  
+};
+
+ap.onmouseup = () => {
+  held = false;
 };
 
 function getDominantColors(imgEl) {
