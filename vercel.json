@@ -13,12 +13,16 @@
     ],
     "routes": [
         {
-            "src": "/blooks.json",
-            "dest": "blooks.json"
+            "src": "/images/(.*)",
+            "dest": "static/images/$1"
+        },
+        {
+            "src": "/assets/(.*)",
+            "dest": "static/assets/$1"
         },
         {
             "src": "/(.+)",
-            "dest": "$1"
+            "dest": "index.js"
         }
     ]
 }
