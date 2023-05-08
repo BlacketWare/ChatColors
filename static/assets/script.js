@@ -198,7 +198,7 @@ window.genBlook = async () => {
   var blooks = Object.fromEntries(
     Object.entries(
       await (
-        await fetch("/worker/blooks", {
+        await fetch("/assets/blooks.json", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
