@@ -43,7 +43,16 @@
     <button class="button" onclick="genG()">make it a gradient</button>
   </div>
 
-  <h4 id="gradName" style="margin: 0px; padding: 0px; font-family: 'Courier New', Courier, monospace; color: rgb(255, 255, 255); position: absolute; bottom: 1vh; left: 1vw;">by death and jxsys</h4>
+  <div class="fromblook" id="fbContainer">
+    <div class="title">from blook</div>
+    <div class="subtitle" style="margin-bottom: 5vh;">enter the full blook name to generate a Death-style chat gradient</div>
+
+    <input type="text" id="blook" placeholder="blook name" />
+    <input type="range" id="blookRange" min="2" max="7" value="2" />
+    <button class="button" onclick="genBlook()">generate</button>
+  </div>
+
+  <h4 id="gradName" style="margin: 0px; padding: 0px; font-family: 'Titan One', sans-serif; color: rgb(255, 255, 255); position: fixed; bottom: 1vh; left: 1vw; filter: drop-shadow(0px 0px 5px #000);">by death and acai</h4>
 
   <script src="script.js"></script>
 </body>
