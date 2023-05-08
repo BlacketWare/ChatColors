@@ -6,7 +6,7 @@ import fs from 'fs';
 const app = express();
 app.use(express.static('static'));
 app.use(cors({
-    origin: 'bcc.villainsrule.xyz',
+    origin: 'bcc.villainsrule.xyz, blacketcolors.vercel.app',
     optionsSuccessStatus: 200
 }));
 app.use(compression({
