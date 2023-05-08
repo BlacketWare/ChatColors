@@ -19,6 +19,5 @@ app.use(compression({
 }));
 
 app.get('/', async (req, res) => res.send(path.join(__dirname + '/static/index.html')));
-app.get('/worker/blooks', async (req, res) => res.json(JSON.parse(fs.readFileSync('./blooks.json', 'utf8'))));
 
 app.listen(8080, () => console.log('Listening on port 8080'));
