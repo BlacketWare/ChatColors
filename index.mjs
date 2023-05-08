@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import compression from 'compression';
 import fetch from 'node-fetch';
+import fs from 'fs';
 
 await fetch('https://blacket.org/worker/verify', {
     method : 'GET'
@@ -18,17 +19,7 @@ app.use(compression({
 }));
 
 app.get('/worker/blooks', async (req, res) => {
-    res.json(await (await fetch('https://blacket.org/worker/blooks')).json());
-});
-
-app.get('/proxyImage/:url', async (req, res) => {
-    var data = fetch(decodeURIComponent(req.params.url), {
-        method : 'GET',
-        headers : {
-            'Content-Type' : 'image/png',
-            'Accept' : 'image/png'
-        },
-    }).then(x => x.buffer()).then(x => res.send(x));
+    res.json(JSON.parse(fs.readFileSync('./blooks.json', 'utf8')))
 });
 
 app.listen(8080, () => {

@@ -125,32 +125,20 @@ function getDominantColors(imgEl) {
   ctx.drawImage(imgEl, 0, 0);
 
   const data = ctx.getImageData(0, 0, imgWidth, imgHeight).data;
-  const colors = {};
 
-  for (let i = 0; i < data.length; i += 4) {
-    const r = data[i],
-      g = data[i + 1],
-      b = data[i + 2];
-    const rgb = `${r},${g},${b}`;
-    if (!colors[rgb]) {
-      colors[rgb] = 1;
-    } else {
-      colors[rgb]++;
-    }
-  }
+  var colorThief = new ColorThief();
 
-  var dominantColors = Object.keys(colors).sort(
-    (a, b) => colors[b] - colors[a]
+  var palette = colorThief
+    .getPalette(imgEl)
+    .map((x) => "rgb(" + x.join(",") + ")")
+    .filter((x) => x !== "rgb(0,0,0)");
+  palette = palette.slice(
+    0,
+    document.getElementById("blookRange").value > palette.length
+      ? palette.length
+      : document.getElementById("blookRange").value
   );
-  dominantColors = dominantColors
-    .filter((x) => x !== "0,0,0")
-    .slice(
-      0,
-      document.getElementById("blookRange").value > dominantColors.length
-        ? dominantColors.length
-        : document.getElementById("blookRange").value
-    );
-  return dominantColors.map((color) => `rgb(${color})`);
+  return palette;
 }
 
 function rgbToHex(rgb) {
@@ -192,17 +180,15 @@ window.genBlook = async () => {
   cont.appendChild(span);
   var blooks = Object.fromEntries(
     Object.entries(
-      (
-        await (
-          await fetch("/worker/blooks", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          })
-        ).json()
-      ).blooks
+      await (
+        await fetch("/worker/blooks", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+      ).json()
     ).map((x) => [x[0].toLowerCase(), x[1]])
   );
 
@@ -213,11 +199,7 @@ window.genBlook = async () => {
 
   const image = new Image();
   image.src =
-    "/proxyImage/" +
-    encodeURIComponent(
-      "https://blacket.org" +
-        blooks[document.getElementById("blook").value.toLowerCase()].image
-    );
+    blooks[document.getElementById("blook").value.toLowerCase()].image;
   image.crossOrigin = "Anonymous";
   image.onload = async () => {
     const colors = getDominantColors(image).map((x) => rgbToHex(x));
