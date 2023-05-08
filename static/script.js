@@ -108,7 +108,7 @@ let angles = [
 let ap = document.getElementById("anglePicker");
 
 ap.onclick = () => {
-  if (cAngle < angles.length - 1) {
+  if (cAngle < angles.length) {
     cAngle++;
     ap.style.transform = "rotate(" + angles[cAngle] + "deg)";
   } else cAngle = 0;
