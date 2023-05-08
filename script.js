@@ -80,7 +80,7 @@ let angles = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 15
 let ap = document.getElementById('anglePicker');
 
 ap.onclick = () => {
-  if (cAngle !== (angles.length - 1)) {
+  if (cAngle < (angles.length - 1)) {
     cAngle++;
     ap.style.transform = 'rotate(' + angles[cAngle] + 'deg)';
   } else cAngle = 0;
