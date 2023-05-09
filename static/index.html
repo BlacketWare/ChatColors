@@ -20,7 +20,6 @@
   
   <header>
     <div class="header-title">blacket colors</div>
-    <div style="display: flex; flex-direction: row; width: 50%; text-align: right; justify-content: right; align-items: center;"><a href="https://discord.gg/blooket" class="button" style="margin-right: 2vw !important; display: flex; text-align: center; justify-content: center; align-items: center; overflow: hidden; min-width: 4vw !important; min-height: 4vw !important; max-width: 4vw !important; max-height: 4vw !important; aspect-ratio: 1/1 !important; padding: 0px; margin: 0px; border-radius: 50%; flex: 1; align-self: center;"><i class="fa-brands fa-discord" style="font-size: 2vw; margin: 0px !important; padding: 0px !important; object-fit: contain;"></i></a></div>
   </header>
 
   <div class="premade">
@@ -36,11 +35,11 @@
     <div class="subtitle" style="margin-bottom: 5vh;">click plus to add, right click stops to delete</div>
   
     <div class="buttons">
-      <span id="anglePicker" style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; margin-right: 0.5vw; width: 2vw; height: 2vw; aspect-ratio: 1/1; border-radius: 50%; background-color: black; font-size: 1.5vw; user-select: none; transform: rotate(90deg);"><i class="fas fa-arrow-up"></i></span>
-      <div style="overflow: visible; justify-content: space-evenly !important; min-height: 1.5vw; max-height: 1.5vw; min-width: calc(30vw - 4vw - 1vw); max-width: calc(30vw - 4vw - 1vw); border-radius: 5rem; background: transparent !important; display: flex; flex-direction: row; text-align: center; justify-content: center; align-items: center; flex: 1; user-select: none; filter: drop-shadow(0px 0px 5px white); outline: 1px solid white;" id="timeline" class="timeline">
+      <span id="anglePicker" style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; margin-right: 0.5vw; width: 2vw; height: 2vw; aspect-ratio: 1/1; border-radius: 50%; background-color: rgb(63, 20, 255); font-size: 1.5vw; user-select: none; transform: rotate(90deg);"><i class="fas fa-arrow-up"></i></span>
+      <div style="overflow: visible; justify-content: space-evenly !important; min-height: 1.5vw; max-height: 1.5vw; min-width: calc(30vw - 4vw - 1vw); max-width: calc(30vw - 4vw - 1vw); border-radius: 5rem; background: rgb(72, 86, 99) !important; display: flex; flex-direction: row; text-align: center; justify-content: center; align-items: center; flex: 1; user-select: none; outline: 0.25vw solid rgb(63, 20, 255);" id="timeline" class="timeline">
         
       </div>
-      <span style="margin-left: 0.5vw; width: 2vw; height: 2vw; aspect-ratio: 1/1; border-radius: 50%; background-color: black; font-size: 1.5vw; transform: rotate(90deg); user-select: none;" onclick="document.getElementById('timeline').innerHTML += '<input oncontextmenu=&quot;this.remove();return false;&quot; style=&quot;--color:#000000;&quot; type=&quot;color&quot; onchange=&quot;this.style.setProperty(\'--color\', this.value); var timeline = document.getElementById(\'timeline\'); var ch = [...document.querySelectorAll(\'#timeline > *\')]; var colors = ch.map(x => x.style.cssText.split(\';\').filter(x1 => x1.split(\':\')[0].trim() === \'--color\')[0].split(\':\')[1]); if (colors.length === 1) { timeline.style.background = colors[0]; } else { var txt = \'linear-gradient(to right,\' + colors.join(\',\') + \')\'; timeline.style.background = txt; }&quot>'">+</span>
+      <span style="margin-left: 0.5vw; width: 2vw; height: 2vw; aspect-ratio: 1/1; border-radius: 50%; background-color: rgb(63, 20, 255); font-size: 1.5vw; transform: rotate(90deg); user-select: none; display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center;" onclick="document.getElementById('timeline').innerHTML += '<input oncontextmenu=&quot;this.remove();return false;&quot; style=&quot;--color:#000000;&quot; type=&quot;color&quot; onchange=&quot;this.style.setProperty(\'--color\', this.value); var timeline = document.getElementById(\'timeline\'); var ch = [...document.querySelectorAll(\'#timeline > *\')]; var colors = ch.map(x => x.style.cssText.split(\';\').filter(x1 => x1.split(\':\')[0].trim() === \'--color\')[0].split(\':\')[1]); if (colors.length === 1) { timeline.style.background = colors[0]; } else { var txt = \'linear-gradient(to right,\' + colors.join(\',\') + \')\'; timeline.style.background = txt; }&quot>'">+</span>
     </div>
     <button class="button" onclick="genG()">make it a gradient</button>
   </div>
@@ -54,7 +53,7 @@
     <button class="button" onclick="genBlook()">generate</button>
   </div>
 
-  <h4 id="gradName" style="margin: 0px; padding: 0px; font-family: 'Titan One', sans-serif; color: rgb(255, 255, 255); position: fixed; bottom: 1vh; left: 1vw; filter: drop-shadow(0px 0px 5px #000);">by death and acai</h4>
+  <h4 id="gradName" style="margin: 0px; padding: 0px; font-family: 'Lexend', sans-serif; color: rgb(255, 255, 255); position: fixed; bottom: 1vh; left: 1vw; background-color: rgba(0, 0, 0, 0.5); border-radius: 0.5rem; padding: 0.5vw;">by death and acai</h4>
 
   <script src="assets/script.js"></script>
 </body>

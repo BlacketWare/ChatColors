@@ -49,11 +49,11 @@ window.transBG = (c) => {
       opacity: 0,
       scaleY: 0,
       scaleX: 0,
-      transformOrigin: "center bottom",
+      transformOrigin: "center bottom"
     })
     .call(() => {
       document.querySelector(".background").style.background = parseCode(c);
-      document.querySelector("#gradName").textContent = c;
+      document.querySelector("#gradName").textContent = c.startsWith('gradient=') ? 'custom gradient' : c;
     })
     .to("#gradName", {
       opacity: 1,
@@ -67,6 +67,7 @@ window.transBG = (c) => {
       scaleY: 1,
       scaleX: 1,
       transformOrigin: "center bottom",
+      filter: 'brightness(70%)'
     });
 };
 
@@ -92,7 +93,7 @@ const parseCode = (g) => {
 
 Object.keys(codes).forEach((code) => {
   $(".prem-btns").append(
-    `<button style="display: flex; flex-direction: column; text-align: center; align-items: center; justify-content: center; min-width: 2vw; min-height: 2vw; aspect-ratio: 1/1; box-sizing: border-box; border: 2px solid white; border-radius: 50%; padding: 0px !important;" onclick="transBG('${code}'); copy('${code}')" class="button"><div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; background: ${parseCode(
+    `<button style="display: flex; flex-direction: column; text-align: center; align-items: center; justify-content: center; min-width: 2vw; min-height: 2vw; aspect-ratio: 1/1; box-sizing: border-box; border-radius: 50%; padding: 0px !important;" onclick="transBG('${code}'); copy('${code}')" class="gradbutton"><div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center; background: ${parseCode(
       code
     )}; border-radius: 50%; min-width: 2.7vw !important; min-height: 2.7vw !important; aspect-ratio: 1/1 !important; margin: 0px !important; padding: 0px !important;"></div></button>`
   );
@@ -188,7 +189,7 @@ function toDataURL(image) {
 window.genBlook = async () => {
   var cont = document.getElementById("fbContainer");
   var span = document.createElement("span");
-  span.style.fontFamily = "Nunito";
+  span.style.fontFamily = "Lexend";
   span.style.color = "white";
   span.style.fontSize = "2vw";
   span.style.filter = "drop-shadow(0px 0px 2px #000)";
@@ -229,13 +230,11 @@ window.genBlook = async () => {
 
     createModal(
       "Text copied to your clipboard.",
-      `<img src="${toDataURL(
-        image
-      )}" style="width: 20%; height: auto;"><br><span style="font-family: \'Nunito\', sans-serif; color: ${
+      `<span style="font-family: \'Lexend\', sans-serif; color: ${
         colors[0]
       };">Name color: ${
         colors[0]
-      }</span><br><span style="font-family: \'Nunito\', sans-serif; -webkit-text-fill-color: transparent; background: ${parseCode(
+      }</span><br><span style="font-family: \'Lexend\', sans-serif; -webkit-text-fill-color: transparent; background: ${parseCode(
         gradientStops
       )}; -webkit-background-clip: text; background-clip: text;">Text looks like this.</span>`,
       {
@@ -308,7 +307,7 @@ window.genG = async () => {
 
   createModal(
     "Text copied to your clipboard.",
-    `<span style="font-family: \'Nunito\', sans-serif; -webkit-text-fill-color: transparent; background: ${parseCode(
+    `<span style="font-family: \'Lexend\', sans-serif; -webkit-text-fill-color: transparent; background: ${parseCode(
       "gradient=[" + ang + ": " + grS.join(", ") + "]"
     )}; -webkit-background-clip: text; background-clip: text;">Text looks like this.</span>`,
     {
