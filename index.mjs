@@ -19,5 +19,4 @@ app.use(compression({
 }));
 
 app.get('/', async (req, res) => res.send(path.join(__dirname + '/static/index.html')));
-
 app.listen(8080, () => console.log('Listening on port 8080'));
